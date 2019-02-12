@@ -1,5 +1,5 @@
 /*
- * Author: Bryan H.
+ * Author: Bryan H. 
  * Date: 12/20/18
  * Description: A program that helps cashiers organize their orders and let customers order food
  */
