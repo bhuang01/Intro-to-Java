@@ -5,7 +5,7 @@
  */
 
 import java.util.Scanner;
-import java.text.NumberFormat;
+import java.text.NumberFormat; 
 
 public class GPACalculator {
 	
