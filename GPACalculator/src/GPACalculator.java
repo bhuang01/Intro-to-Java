@@ -3,7 +3,7 @@
  * Date: 12/20/18
  * Description: A program that helps cashiers organize their orders and let customers order food
  */
-
+ 
 import java.util.Scanner;
 import java.text.NumberFormat;
 
