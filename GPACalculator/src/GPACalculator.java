@@ -1,7 +1,7 @@
 /*
  * Author: Bryan H.
  * Date: 12/20/18
- * Description: A program that helps cashiers organize their orders and let customers order food
+ * Description: A program th at helps cashiers organize their orders and let customers order food
  */
 
 import java.util.Scanner;
