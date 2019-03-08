@@ -2,161 +2,277 @@
  * Author: Bryan H.
  * Date: 2/6/19
  * Description: This program plays around with the String class and some of its methods.
- * Version: 1.0
- * Version Notes: N/A
+ * Version: 2.0
+ * Version Notes: Experimentation is the correct password method that checks if the given password is correct
+ * Extra Experimentation: Added a password strength feature to the valid password method
  */
 
 import java.util.Scanner;
 
 public class StringToolBox {
-	
-	Scanner scan = new Scanner(System.in);
-	
-	public String nameEcho(String s) {
-		int index = 0;
-		
-		String firstName="";
+
+	/**
+	 * Returns a name with the last name in all caps.
+	 * 
+	 * @param input - The name
+	 * @return Bob jones would retrun Bob JONES
+	 */
+	public String nameEcho(String input) {
+		int spaceIndex = 0;
+		String firstName = "";
 		String lastName = "";
-		
-		index = s.indexOf(" ");
-		
-		firstName = s.substring(0, index);
-		lastName = s.substring(index);
-		
-		firstName.toUpperCase();
+
+		spaceIndex = input.indexOf(" ");
+		firstName = input.substring(0, spaceIndex);
+		lastName = input.substring(spaceIndex);
 		lastName = lastName.toUpperCase();
-		
+
 		return firstName + lastName;
 	}
-	
-	public boolean endsWithStar(String s) {
-		boolean endsWithStar = false;
-		//int beginIndex = s.length() - 1;
-		String star = "*";
-		//String lastChar = s.substring(beginIndex);
-		
-		if (s.endsWith(star)) {
-			endsWithStar = true;
-		}
-		
-		return endsWithStar;
-	}
 
-	public boolean endsWithTwoStars(String s) {		
-		if (s.endsWith("**")) return true;
-		
+	/*
+	 * Checks if string ends with a star
+	 */
+	public static boolean endsWithStar(String input) {
+		if (input.endsWith("*")) {
+			return true;
+		}
+
 		return false;
 	}
 
-	public String last4(String s) {
-		String lastFour = "";
-		int index = s.length() - 4;
-		lastFour = s.substring(index);
-		lastFour = lastFour.replace("", " ").trim();
-		return lastFour;
+	/**
+	 * Checks if a string ends with two stars
+	 */
+	public static boolean endsWithTwoStars(String input) {
+		if (input.endsWith("**")) {
+			return true;
+		}
+
+		return false;
 	}
 
-	public String last5(String s) {
-		String lastFive = "";
-		int index = s.length() - 6;
-		lastFive = s.substring(index);
-		lastFive = lastFive.replaceAll(" ","");
-		
-		lastFive = lastFive.replace("", " ").trim();
-		return lastFive;
+	/**
+	 * Returns the last 4 characters of a string.
+	 */
+	public static String last4(String input) {
+		return input.substring(input.length() - 4, input.length());
 	}
 
-	public String scroll(String s) {
-		String firstChar = "";
-		String newStr = "";
-		firstChar = s.substring(0, 1);
-		newStr = s.substring(1) + firstChar;
-		return newStr;
+	/**
+	 * Returns the last 5 characters of a string.
+	 */
+	public static String last5(String input) {
+		input = input.replaceAll(" ", "");
+		return input.substring(input.length() - 5, input.length());
 	}
 
-	public String convertName(String s) {
-		int indexOfFirstName = s.indexOf(",") + 2;
-		
-		String firstName = s.substring(indexOfFirstName);
-		String lastName = s.substring(0, indexOfFirstName - 2);
-		
-		String newStr = firstName + " " + lastName;
-		return newStr;
+	/**
+	 * Makes a string have a scrolling effect by moving the first character to the
+	 * end.
+	 */
+	public static String scroll(String input) {
+		return input.substring(1, input.length()) + input.substring(0, 1);
 	}
-	
-	public String removeDashes(String s) {
-		String newStr = s.replaceAll("-", "");
-		return newStr;
+
+	/**
+	 * Makes a name Last, First instead of First Last.
+	 */
+	public static String convertName(String input) {
+		int commaIndex = input.indexOf(",");
+		return input.substring(commaIndex + 2, input.length()) + " " + input.substring(0, commaIndex);
 	}
-	
-	public String dateStr(String s) {
-		String newStr = "";
-		String newDay;
-		String newMonth;
+
+	/**
+	 * Removes the dashes from a string.
+	 */
+	public static String removeDashes(String input) {
+		return input.replaceAll("-", "");
+	}
+
+	/**
+	 * Converts data formats from slashes to dashes.
+	 */
+	public static String dateStr(String input) {
+		int firstSlash = input.indexOf("/");
+		int lastSlash = input.lastIndexOf("/");
+		String months = input.substring(0, firstSlash);
+		String days = input.substring(firstSlash + 1, lastSlash);
+		String years = input.substring(lastSlash + 1, input.length());
 		
-		int indexFirstSlash = s.indexOf("/");
-		int indexSecondSlash = s.indexOf("/", indexFirstSlash + 1);
-		
-		String month = s.substring(0, indexFirstSlash);
-		int numMonth = Integer.parseInt(month);
-		if (numMonth < 10) {
-			newMonth = "0" + numMonth;
-		}
-		else {
-			newMonth = numMonth + "";
-		}
-		
-		String day = s.substring(indexFirstSlash + 1, indexSecondSlash);
-		int numDay = Integer.parseInt(day);
-		if (numDay < 10) {
-			newDay = "0" + numDay;
-		}
-		else {
-			newDay = numDay + "";
+		if(Integer.parseInt(months) < 10 && months.length() == 1) {
+			months = "0" + months;
 		}
 		
-		String year = s.substring(indexSecondSlash + 1);
+		if(Integer.parseInt(days) < 10 && days.length() == 1) {
+			days = "0" + days;
+		}
 		
-		newStr = newDay + "-" + newMonth + "-" + year;
-		
-		return newStr;
+		return days + "-" + months + "-" + years;
 	}
-	
-	public String negativeBits(String s) {
-		String newStr;
-		newStr = s.replaceAll(" ", "");
-		newStr = s.replaceAll("0", "2").replaceAll("1", "0").replaceAll("2", "1");
-		return newStr;
+
+	/**
+	 * Makes bits negative (0 to 1 and 1 to 0)
+	 */
+	public static String negativeBits(String input) {
+		input = input.trim();
+		input = input.replaceAll("1", "a");
+		input = input.replaceAll("0", "b");
+		input = input.replaceAll("a", "0");
+		return input.replaceAll("b", "1");
 	}
-	
-	public boolean containsSameChar(String s) {
-		boolean containsSameChar = false;
-		String firstChar = s.substring(0, 1);
-		String newStr = s.replaceAll(firstChar, "");
-		if (newStr.length() == 0) containsSameChar = true;
-		return containsSameChar;
+
+	/**
+	 * If a string contains all of the same characters.
+	 */
+	public static boolean containsSameChar(String input) {
+		if (input.replaceAll("" + input.charAt(0), "").length() == 0) {
+			return true;
+		}
+
+		return false;
 	}
-	
-	public String removeComments(String s) {
-		int indexBefore = s.indexOf("/*");
-		int indexAfter = s.indexOf("*/");
-		String before = s.substring(0, indexBefore);
-		String after = s.substring(indexAfter + 2, s.length());
-		return before + after;
-	}
-	
-	public String caesar(String s) {
-		int cipherNum = scan.nextInt();
-		if (cipherNum >= 25) cipherNum -= 25;
-		String newStr = "";
-		String alphabet = "abcdefghijklmnopqrstuvwxyz";
-		for (int i = 0; i < s.length() - 1; i++) {
-			int indexReplace = i + cipherNum;
-			if (indexReplace > 25) {
-				indexReplace -= 25;
+
+	/**
+	 * Removes the /* comments from a string.
+	 */
+	public static String removeComments(String input) {
+
+		String buffer = input;
+
+		// While comments still exist in out string
+		while (buffer.contains("/*")) {
+			int startComment = buffer.indexOf("/*");
+			int endComment = buffer.indexOf("*/");
+
+			// If there are no comments to begin with
+			if (startComment == 0) {
+				return input;
 			}
-			newStr = s.replace(s.charAt(i), s.charAt(indexReplace));
+
+			String before = buffer.substring(0, startComment);
+			String after = buffer.substring(endComment + 2, buffer.length());
+			buffer = before + after;
 		}
-		return newStr;
+
+		return buffer;
+	}
+	
+	/**
+	 * Does the caesar cipher to a string.
+	 */
+	public static String caesarCipher(String input, int cipher) {
+		String result = "";
+		for (int i = 0; i < input.length(); i++) {
+			if (Character.isLetter(input.charAt(i))) {
+				char c = (char) (input.charAt(i) + cipher);
+				if (Character.isUpperCase(input.charAt(i))) {
+					if (c > 'Z') {
+						result += (char) (input.charAt(i) - (26 - cipher));
+					} else {
+						result += (char) (input.charAt(i) + cipher);
+					}
+				} else {
+					if (c > 'z') {
+						result += (char) (input.charAt(i) - (26 - cipher));
+					} else {
+						result += (char) (input.charAt(i) + cipher);
+					}
+				}
+			} else {
+				result += input.charAt(i);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Tests if a word in reverse is the same as the word normally.
+	 */
+	public static boolean isPalindrome(String word) {
+		// Format the string (just lower case letters)
+		word = word.toLowerCase();
+
+		String parsed = "";
+		for (Character c : word.toCharArray()) {
+			if (Character.isLetter(c)) {
+				parsed += c;
+			}
+		}
+
+		word = parsed;
+
+		// Reverse the string
+		String reversed = new StringBuffer(word).reverse().toString();
+
+		if (reversed.equals(word)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/*
+	 * Checks if a given password is up to standard and valid
+	 */
+	public static boolean validPassword(String password) {
+		if (password.contains(" ") || password.length() < 7) {
+			return false;
+		}
+
+		boolean containsUpper = false;
+		boolean containsLower = false;
+		boolean containsNumber = false;
+		char[] passArray = password.toCharArray();
+		for (int i = 0; i < password.length(); i++) {
+			if (Character.isUpperCase(passArray[i])) {
+				containsUpper = true;
+			}
+
+			if (Character.isLowerCase(passArray[i])) {
+				containsLower = true;
+			}
+
+			if (Character.isDigit(passArray[i])) {
+				containsNumber = true;
+			}
+		}
+
+		if (containsUpper && containsLower && containsNumber) {
+			return true;
+		}
+		
+		/*
+		 * ------------------------------------------------------
+		 * CHECKS PASSWORD STRENGTH (EXPERIMENTATION)
+		 * ------------------------------------------------------
+		 */
+		
+		int passStrengthNum = 0;
+		int TOTALPASSSTRENGTH = 50;
+		if (password.length() > 10) passStrengthNum += 10;
+		if (containsUpper) passStrengthNum += 10;
+		if (containsLower) passStrengthNum += 10;
+		if (containsNumber) passStrengthNum += 10;
+		
+		System.out.println("\n************PASSWORD STRENGTH*************");
+		System.out.println("Your password is:");
+		if (passStrengthNum == 10) System.out.println("VERY WEAK");
+		else if (passStrengthNum == 20) System.out.println("WEAK");
+		else if (passStrengthNum == 30) System.out.println("AVERAGE");
+		else if (passStrengthNum == 40) System.out.println("STRONG");
+		else if (passStrengthNum == 50) System.out.println("VERY STRONG");
+		System.out.println("******************************************\n");
+
+		return false;
+	}	
+	
+	//Checks if a password is correct
+	public boolean correctPassword(String input) {
+		boolean correct = false;
+		String password = "thisisthecorrectpass123";
+		
+		if (input.equals(password))correct = true;
+		return correct;
 	}
 }
