@@ -1,4 +1,6 @@
 
+import java.util.Scanner;
+
 public class StringToolBoxTester {
 	/*
 	 * 
@@ -9,8 +11,11 @@ public class StringToolBoxTester {
 	 * 
 	 * 
 	 */
+	
 
 	public static void main(String[] args) {
+		
+		Scanner scan = new Scanner(System.in);
 
 		StringToolBox stringTool = new StringToolBox();
 
@@ -54,7 +59,19 @@ public class StringToolBoxTester {
 		System.out.println("Hello, this is a string with embedded comments = " + stringTool.removeComments("Hello, this is a /*input */string with embedded comments"));
 		
 		System.out.println("***Testing: String caesar(String s)***");
-		System.out.println("abcdefghijklmnopqrstuvwxyz = " + stringTool.caesar("abcdefghijklmnopqrstuvwxyz"));
+		System.out.println("abcdefghijklmnopqrstuvwxyz = " + stringTool.caesarCipher("abcdefghijklmnopqrstuvwxyz", 5));
+		
+		System.out.println("***Testing: boolean isPalindrom(String s)***");
+		System.out.println("false = " + stringTool.isPalindrome("burger"));
+		System.out.println("true = " + stringTool.isPalindrome("racecar"));
+
+		System.out.println("***Testing: boolean validPassword(String password)***");
+		System.out.println("true = " + stringTool.validPassword("snowFlake47"));
+		System.out.println("false = " + stringTool.validPassword("SNOWFLAKE47"));	
+		
+		System.out.println("***Testing: boolean correctPassword(String password)***");
+		System.out.println("true = " + stringTool.correctPassword("thisisthecorrectpass123"));
+		System.out.println("false = " + stringTool.correctPassword("incorrect321"));	
 	}
 
 }
