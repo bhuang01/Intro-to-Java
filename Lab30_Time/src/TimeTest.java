@@ -12,6 +12,7 @@ public class TimeTest {
 		Time t3 = new Time(24,0);
 		Time t4 = new Time(-1,30);
 		
-		System.out.println(t1 + " " + t2 + " " + t3 + " " + t4);	
+		System.out.println(t1 + " " + t2 + " " + t3 + " " + t4);
+		
 	}
 }
