@@ -72,7 +72,7 @@ public class Time {
 
 	//Compares times to see if one is later, earlier, or the same
 	/*
-	 * @param		A time to compare to
+	 * @param input		A time to compare to
 	 * @return	-1 if time is earlier than Time t
 	 * 				0 if time is equal to t
 	 * 				1 if time is later than t
