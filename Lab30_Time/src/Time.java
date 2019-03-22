@@ -72,8 +72,8 @@ public class Time {
 
 	//Compares times to see if one is later, earlier, or the same
 	/*
-	 * @param: 		A time to compare to
-	 * @return: 	-1 if time is earlier than Time t
+	 * @param		A time to compare to
+	 * @return	-1 if time is earlier than Time t
 	 * 				0 if time is equal to t
 	 * 				1 if time is later than t
 	 * 				2 if error
@@ -96,8 +96,8 @@ public class Time {
 	
 	//Returns the elapsed number of minutes since a certain Time t
 	/*
-	 * @param: 		Time t, origin time
-	 * @return: 	Number of minutes after Time t
+	 * @param 		Time t, origin time
+	 * @return 	Number of minutes after Time t
 	 * 				If t is greater than time, then t will be assumed to be
 	 * 				from the previous day
 	 */
