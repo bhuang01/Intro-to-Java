@@ -18,6 +18,9 @@ public class TimeTest {
 		
 		//System.out.println(t1.elapsedSince(t2)); //Testing the elapsedTime method
 	
-		
+		t1.increment();
+		System.out.println(t1);
+		t1.increment();
+		System.out.println(t1);
 	}
 }
