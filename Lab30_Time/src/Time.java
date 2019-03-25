@@ -1,3 +1,7 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+//import java.util.Date;
+
 /*
  * Author: 		Bryan H.
  * Date: 		03/15/19
@@ -9,9 +13,12 @@
 public class Time {
 	
 	//Fields:
+	private final DateFormat format = new SimpleDateFormat("hh:mm");
 	private int hours;
 	private int minutes;
 	public String time;
+	private boolean am = false;
+	private boolean printAmPm = false;
 	
 	//Constructors:
 	public Time() {
@@ -72,8 +79,8 @@ public class Time {
 
 	//Compares times to see if one is later, earlier, or the same
 	/*
-	 * @param input		A time to compare to
-	 * @return	-1 if time is earlier than Time t
+	 * @param: 		A time to compare to
+	 * @return: 	-1 if time is earlier than Time t
 	 * 				0 if time is equal to t
 	 * 				1 if time is later than t
 	 * 				2 if error
@@ -96,8 +103,8 @@ public class Time {
 	
 	//Returns the elapsed number of minutes since a certain Time t
 	/*
-	 * @param 		Time t, origin time
-	 * @return 	Number of minutes after Time t
+	 * @param: 		Time t, origin time
+	 * @return: 	Number of minutes after Time t
 	 * 				If t is greater than time, then t will be assumed to be
 	 * 				from the previous day
 	 */
@@ -117,5 +124,22 @@ public class Time {
 		else if (t.toMins() == this.toMins()) elapsedMins = 0;
 		
 		return elapsedMins;
+	}
+	
+	public void increment() {
+		this.minutes++;
+
+		if (this.minutes == 60) {
+			this.hours++;
+			this.minutes = 0;
+
+			if (this.hours == 24) {
+				this.hours = 0;
+			}
+		}
+	}
+	
+	public void setPrintAMPM(boolean isAMPM) {
+		this.printAmPm = true;
 	}
 }
