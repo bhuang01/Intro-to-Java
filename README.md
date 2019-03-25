@@ -1,2 +1,2 @@
-# Intro-to-Java
-School java class
+## Intro-to-Java
+> **School java class**
